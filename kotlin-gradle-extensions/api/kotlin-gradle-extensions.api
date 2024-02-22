@@ -43,6 +43,8 @@ public final class com/rickbusarow/kgx/DomainObjectCollectionKt {
 	public static final fun get (Lorg/gradle/api/NamedDomainObjectCollection;Lcom/rickbusarow/kgx/names/DomainObjectName;)Ljava/lang/Object;
 	public static final fun get (Lorg/gradle/api/NamedDomainObjectCollection;Ljava/lang/String;)Ljava/lang/Object;
 	public static final fun invoke (Lcom/rickbusarow/kgx/internal/ElementInfoAction;Ljava/lang/String;Ljava/lang/Class;Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;)V
+	public static final fun named (Lorg/gradle/api/NamedDomainObjectCollection;Lkotlin/text/Regex;Ljava/lang/Class;)Lorg/gradle/api/NamedDomainObjectCollection;
+	public static final fun named (Lorg/gradle/api/NamedDomainObjectCollection;Lkotlin/text/Regex;Lkotlin/reflect/KClass;)Lorg/gradle/api/NamedDomainObjectCollection;
 	public static final fun provideDelegate (Lorg/gradle/api/NamedDomainObjectCollection;Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lorg/gradle/api/NamedDomainObjectProvider;
 	public static final fun registerOnce (Lorg/gradle/api/NamedDomainObjectContainer;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/NamedDomainObjectProvider;
 	public static synthetic fun registerOnce$default (Lorg/gradle/api/NamedDomainObjectContainer;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/NamedDomainObjectProvider;
@@ -168,6 +170,11 @@ public final class com/rickbusarow/kgx/PluginContainerKt {
 	public static final fun withSigningPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
 }
 
+public final class com/rickbusarow/kgx/PluginContainerKt$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
 public final class com/rickbusarow/kgx/PluginManagerKt {
 	public static final fun withAnyPlugin (Lorg/gradle/api/plugins/PluginManager;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static final fun withApplicationPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
@@ -216,6 +223,11 @@ public final class com/rickbusarow/kgx/PluginManagerKt {
 	public static final fun withSigningPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
 }
 
+public final class com/rickbusarow/kgx/PluginManagerKt$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
 public final class com/rickbusarow/kgx/ProjectKt {
 	public static final fun allProjectsTasksMatchingName (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/util/List;
 	public static final fun buildDir (Lorg/gradle/api/Project;)Ljava/io/File;
@@ -261,16 +273,28 @@ public final class com/rickbusarow/kgx/TaskKt {
 	public static final fun maybeNamed (Lorg/gradle/api/tasks/TaskContainer;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static final fun mustRunAfter (Lorg/gradle/api/tasks/TaskCollection;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskCollection;
 	public static final fun mustRunAfter (Lorg/gradle/api/tasks/TaskProvider;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskProvider;
+	public static final fun named (Lorg/gradle/api/tasks/TaskCollection;Lkotlin/text/Regex;Ljava/lang/Class;)Lorg/gradle/api/tasks/TaskCollection;
+	public static final fun named (Lorg/gradle/api/tasks/TaskCollection;Lkotlin/text/Regex;Lkotlin/reflect/KClass;)Lorg/gradle/api/tasks/TaskCollection;
 	public static final fun namedOrNull (Lorg/gradle/api/tasks/TaskCollection;Ljava/lang/String;)Lorg/gradle/api/NamedDomainObjectCollectionSchema$NamedDomainObjectSchema;
 	public static final fun registerOnce (Lorg/gradle/api/tasks/TaskContainer;Lcom/rickbusarow/kgx/names/DomainObjectName;Ljava/lang/Class;Lorg/gradle/api/Action;)Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun registerOnce (Lorg/gradle/api/tasks/TaskContainer;Ljava/lang/String;Ljava/lang/Class;Lorg/gradle/api/Action;)Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun undecoratedTypeName (Lorg/gradle/api/Task;)Ljava/lang/String;
 }
 
+public final class com/rickbusarow/kgx/TaskKt$sam$i$org_gradle_api_specs_Spec$0 : org/gradle/api/specs/Spec {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun isSatisfiedBy (Ljava/lang/Object;)Z
+}
+
 public final class com/rickbusarow/kgx/internal/DomainObjectCollectionInternalKt {
 	public static final fun hasRealized (Lorg/gradle/api/NamedDomainObjectCollection;Ljava/lang/String;)Z
 	public static final fun invoke (Lcom/rickbusarow/kgx/internal/ElementInfoAction;Ljava/lang/String;Ljava/lang/Class;Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;)V
 	public static final fun isRealized (Lorg/gradle/api/NamedDomainObjectProvider;)Z
+}
+
+public final class com/rickbusarow/kgx/internal/DomainObjectCollectionInternalKt$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
 }
 
 public abstract interface class com/rickbusarow/kgx/internal/ElementInfoAction : org/gradle/api/Action {

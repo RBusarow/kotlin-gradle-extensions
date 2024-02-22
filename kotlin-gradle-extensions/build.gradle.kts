@@ -16,7 +16,6 @@
 plugins {
   id("com.rickbusarow.mahout.kotlin-jvm-module")
   id("com.rickbusarow.mahout.gradle-test")
-  // id("builds.gradle-tests")
   alias(libs.plugins.buildconfig)
 }
 
@@ -29,6 +28,9 @@ mahout {
       pomDescription = "Common utilities for Gradle"
     )
   }
+  kotlin {
+    explicitApi = true
+  }
 }
 
 buildConfig {
@@ -39,9 +41,8 @@ buildConfig {
     className("BuildConfig")
 
     buildConfigField(
-      type = "java.io.File",
       name = "localBuildM2Dir",
-      value = rootProject.layout.buildDirectory.dir("m2").map { "File(\"${it}\")" }
+      value = rootProject.layout.buildDirectory.dir("m2").map { it.asFile }
     )
     buildConfigField(name = "version", value = mahoutProperties.versionName)
 

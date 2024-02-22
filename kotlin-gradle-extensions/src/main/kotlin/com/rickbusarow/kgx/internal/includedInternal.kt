@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("ForbiddenImport")
+
 package com.rickbusarow.kgx.internal
 
 import com.rickbusarow.kgx.EagerGradleApi
