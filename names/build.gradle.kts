@@ -14,7 +14,7 @@
  */
 
 plugins {
-  id("com.rickbusarow.mahout.jvm-module")
+  id("com.rickbusarow.mahout.kotlin-jvm-module")
 }
 
 mahout {

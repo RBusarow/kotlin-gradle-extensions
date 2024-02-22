@@ -14,7 +14,8 @@
  */
 
 plugins {
-  id("com.rickbusarow.mahout.jvm-module")
+  id("com.rickbusarow.mahout.kotlin-jvm-module")
+  id("com.rickbusarow.mahout.gradle-test")
   // id("builds.gradle-tests")
   alias(libs.plugins.buildconfig)
 }
@@ -30,27 +31,30 @@ mahout {
   }
 }
 
-// buildConfig {
-//
-//   this@buildConfig.sourceSets.named(java.sourceSets.gradleTest.name) {
-//
-//     packageName(builds.GROUP)
-//     className("BuildConfig")
-//
-//     buildConfigField(
-//       type = "java.io.File",
-//       name = "localBuildM2Dir",
-//       value = rootProject.layout.buildDirectory.dir("m2").map { "File(\"${it}\")" }
-//     )
-//     buildConfigField(type = "String", name = "version", value = VERSION_NAME)
-//     buildConfigField(
-//       name = "mavenArtifact",
-//       value = provider { "${builds.GROUP}:$artifactId:${VERSION_NAME}" }
-//     )
-//     buildConfigField(name = "kotlinGradle", value = libs.versions.kotlin.gradle.get())
-//     buildConfigField(name = "kotlinLibraries", value = libs.versions.kotlin.libraries.get())
-//   }
-// }
+buildConfig {
+
+  this@buildConfig.sourceSets.named(java.sourceSets.gradleTest.name) {
+
+    packageName(mahoutProperties.group.get())
+    className("BuildConfig")
+
+    buildConfigField(
+      type = "java.io.File",
+      name = "localBuildM2Dir",
+      value = rootProject.layout.buildDirectory.dir("m2").map { "File(\"${it}\")" }
+    )
+    buildConfigField(name = "version", value = mahoutProperties.versionName)
+
+    buildConfigField(
+      name = "mavenArtifact",
+      value = mahoutProperties.group.zip(mahoutProperties.versionName) { group, version ->
+        "$group:$artifactId:$version"
+      }
+    )
+    buildConfigField(name = "kotlinGradle", value = libs.versions.kotlin.gradle)
+    buildConfigField(name = "kotlinLibraries", value = libs.versions.kotlin.libraries)
+  }
+}
 
 dependencies {
 
@@ -61,22 +65,20 @@ dependencies {
   compileOnly(libs.kotlin.gradle.plugin)
   compileOnly(libs.kotlin.gradle.plugin.api)
 
-  // gradleTestImplementation(gradleTestKit())
-  //
-  // gradleTestImplementation(libs.junit.engine)
-  // gradleTestImplementation(libs.junit.jupiter)
-  // gradleTestImplementation(libs.junit.jupiter.api)
-  // gradleTestImplementation(libs.kotest.assertions.core.jvm)
-  // gradleTestImplementation(libs.kotest.assertions.shared)
-  // gradleTestImplementation(libs.kotlin.gradle.plugin)
-  // gradleTestImplementation(libs.kotlin.gradle.plugin.api)
-  // gradleTestImplementation(libs.rickBusarow.kase)
-  // gradleTestImplementation(libs.rickBusarow.kase.gradle) {
-  //   exclude(group = "com.rickbusarow.kgx")
-  // }
-  // gradleTestImplementation(libs.rickBusarow.kase.gradle.dsl) {
-  //   exclude(group = "com.rickbusarow.kgx")
-  // }
+  gradleTestImplementation(libs.junit.engine)
+  gradleTestImplementation(libs.junit.jupiter)
+  gradleTestImplementation(libs.junit.jupiter.api)
+  gradleTestImplementation(libs.kotest.assertions.core.jvm)
+  gradleTestImplementation(libs.kotest.assertions.shared)
+  gradleTestImplementation(libs.kotlin.gradle.plugin)
+  gradleTestImplementation(libs.kotlin.gradle.plugin.api)
+  gradleTestImplementation(libs.rickBusarow.kase)
+  gradleTestImplementation(libs.rickBusarow.kase.gradle) {
+    exclude(group = "com.rickbusarow.kgx")
+  }
+  gradleTestImplementation(libs.rickBusarow.kase.gradle.dsl) {
+    exclude(group = "com.rickbusarow.kgx")
+  }
 
   testImplementation(gradleApi())
 

@@ -13,18 +13,11 @@
  * limitations under the License.
  */
 
+rootProject.name = "kgx"
+
 pluginManagement {
-  val allowMavenLocal =
-    providers
-      .gradleProperty("kgx.allow-maven-local")
-      .orNull
-      .toBoolean()
 
   repositories {
-    if (allowMavenLocal) {
-      logger.lifecycle("${rootProject.name} -- allowing mavenLocal for plugins")
-      mavenLocal()
-    }
     gradlePluginPortal()
     mavenCentral()
     google()
@@ -63,28 +56,16 @@ gradleEnterprise {
   }
 }
 
-val allowMavenLocal =
-  providers
-    .gradleProperty("kgx.allow-maven-local")
-    .orNull
-    .toBoolean()
-
 dependencyResolutionManagement {
   @Suppress("UnstableApiUsage")
   repositories {
-    if (allowMavenLocal) {
-      logger.lifecycle("${rootProject.name} -- allowing mavenLocal for dependencies")
-      mavenLocal()
-    }
-    google()
     mavenCentral()
-    maven("https://plugins.gradle.org/m2/")
+    gradlePluginPortal()
+    google()
   }
 }
 
-rootProject.name = "kgx"
-
 include(
-  ":names",
-  ":kotlin-gradle-extensions"
+  ":kotlin-gradle-extensions",
+  ":names"
 )
