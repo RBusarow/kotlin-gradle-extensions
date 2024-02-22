@@ -1,12 +1,7 @@
 [versions]
-jdk = "11" # the jdk used to build the project
-jvmTarget = "1.8" # the jdk used in packaging
-jvmTargetBuildLogic = "11" # the jdk used in packaging
 
 kotlin-gradle = "1.9.22"
 kotlin-libraries = "1.9.22"
-
-kgx-dev = "0.1.12-SNAPSHOT"
 
 benManes-versions = "0.51.0"
 breadmoirai-github-release = "2.5.2"
@@ -17,12 +12,10 @@ diffplug-spotless = "6.25.0"
 dokka = "1.9.10"
 dropbox-dependencyGuard = "0.5.0"
 ec4j = "0.3.0"
-github-release = "2.5.1"
 integration-test = "1.4.5"
 jUnit = "5.10.2"
 johnrengelman-shadow = "8.1.1"
 kotest = "5.8.0"
-kotlinApi = "1.7"
 kotlinx-binaryCompatibility = "0.14.0"
 kotlinx-serialization = "1.6.3"
 kotlinx-coroutines = "1.7.2"

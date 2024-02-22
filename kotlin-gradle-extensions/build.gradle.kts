@@ -13,49 +13,44 @@
  * limitations under the License.
  */
 
-import builds.VERSION_NAME
-import com.github.gmazzo.buildconfig.BuildConfigTask
-
 plugins {
-  id("module")
-  id("builds.gradle-tests")
+  id("com.rickbusarow.mahout.jvm-module")
+  // id("builds.gradle-tests")
   alias(libs.plugins.buildconfig)
 }
 
 val artifactId = "kotlin-gradle-extensions"
 
-module {
-  published(
-    artifactId = artifactId,
-    pomDescription = "Common utilities for Gradle"
-  )
-}
-
-buildConfig {
-
-  this@buildConfig.sourceSets.named(java.sourceSets.gradleTest.name) {
-
-    packageName(builds.GROUP)
-    className("BuildConfig")
-
-    buildConfigField(
-      type = "java.io.File",
-      name = "localBuildM2Dir",
-      value = rootProject.layout.buildDirectory.dir("m2").map { "File(\"${it}\")" }
+mahout {
+  publishing {
+    publishMaven(
+      artifactId = artifactId,
+      pomDescription = "Common utilities for Gradle"
     )
-    buildConfigField(type = "String", name = "version", value = VERSION_NAME)
-    buildConfigField(
-      name = "mavenArtifact",
-      value = provider { "${builds.GROUP}:$artifactId:${VERSION_NAME}" }
-    )
-    buildConfigField(name = "kotlinGradle", value = libs.versions.kotlin.gradle.get())
-    buildConfigField(name = "kotlinLibraries", value = libs.versions.kotlin.libraries.get())
   }
 }
 
-rootProject.tasks.named("prepareKotlinBuildScriptModel") {
-  dependsOn(tasks.withType(BuildConfigTask::class.java))
-}
+// buildConfig {
+//
+//   this@buildConfig.sourceSets.named(java.sourceSets.gradleTest.name) {
+//
+//     packageName(builds.GROUP)
+//     className("BuildConfig")
+//
+//     buildConfigField(
+//       type = "java.io.File",
+//       name = "localBuildM2Dir",
+//       value = rootProject.layout.buildDirectory.dir("m2").map { "File(\"${it}\")" }
+//     )
+//     buildConfigField(type = "String", name = "version", value = VERSION_NAME)
+//     buildConfigField(
+//       name = "mavenArtifact",
+//       value = provider { "${builds.GROUP}:$artifactId:${VERSION_NAME}" }
+//     )
+//     buildConfigField(name = "kotlinGradle", value = libs.versions.kotlin.gradle.get())
+//     buildConfigField(name = "kotlinLibraries", value = libs.versions.kotlin.libraries.get())
+//   }
+// }
 
 dependencies {
 
@@ -66,22 +61,22 @@ dependencies {
   compileOnly(libs.kotlin.gradle.plugin)
   compileOnly(libs.kotlin.gradle.plugin.api)
 
-  gradleTestImplementation(gradleTestKit())
-
-  gradleTestImplementation(libs.junit.engine)
-  gradleTestImplementation(libs.junit.jupiter)
-  gradleTestImplementation(libs.junit.jupiter.api)
-  gradleTestImplementation(libs.kotest.assertions.core.jvm)
-  gradleTestImplementation(libs.kotest.assertions.shared)
-  gradleTestImplementation(libs.kotlin.gradle.plugin)
-  gradleTestImplementation(libs.kotlin.gradle.plugin.api)
-  gradleTestImplementation(libs.rickBusarow.kase)
-  gradleTestImplementation(libs.rickBusarow.kase.gradle) {
-    exclude(group = "com.rickbusarow.kgx")
-  }
-  gradleTestImplementation(libs.rickBusarow.kase.gradle.dsl) {
-    exclude(group = "com.rickbusarow.kgx")
-  }
+  // gradleTestImplementation(gradleTestKit())
+  //
+  // gradleTestImplementation(libs.junit.engine)
+  // gradleTestImplementation(libs.junit.jupiter)
+  // gradleTestImplementation(libs.junit.jupiter.api)
+  // gradleTestImplementation(libs.kotest.assertions.core.jvm)
+  // gradleTestImplementation(libs.kotest.assertions.shared)
+  // gradleTestImplementation(libs.kotlin.gradle.plugin)
+  // gradleTestImplementation(libs.kotlin.gradle.plugin.api)
+  // gradleTestImplementation(libs.rickBusarow.kase)
+  // gradleTestImplementation(libs.rickBusarow.kase.gradle) {
+  //   exclude(group = "com.rickbusarow.kgx")
+  // }
+  // gradleTestImplementation(libs.rickBusarow.kase.gradle.dsl) {
+  //   exclude(group = "com.rickbusarow.kgx")
+  // }
 
   testImplementation(gradleApi())
 

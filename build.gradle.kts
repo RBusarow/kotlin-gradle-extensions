@@ -13,10 +13,8 @@
  * limitations under the License.
  */
 
-import builds.GROUP
-
 plugins {
-  id("root")
+  id("com.rickbusarow.mahout.root")
   alias(libs.plugins.moduleCheck)
   alias(libs.plugins.doks)
 }
@@ -30,13 +28,13 @@ doks {
   dokSet {
     docs("README.md", "CHANGELOG.md")
 
-    rule("maven-with-version") {
-      regex = maven(GROUP)
-      replacement = "$1:$2:${libs.versions.rickBusarow.kgx.get().escapeReplacement()}"
-    }
-    rule("kgx-group") {
-      regex = "com\\.(?:rickbusarow|square|squareup)\\.kgx"
-      replacement = GROUP
-    }
+    // rule("maven-with-version") {
+    //   regex = maven(GROUP)
+    //   replacement = "$1:$2:${libs.versions.rickBusarow.kgx.get().escapeReplacement()}"
+    // }
+    // rule("kgx-group") {
+    //   regex = "com\\.(?:rickbusarow|square|squareup)\\.kgx"
+    //   replacement = GROUP
+    // }
   }
 }
